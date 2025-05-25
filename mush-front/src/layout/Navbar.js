@@ -58,12 +58,11 @@ export default function Navbar() {
     localStorage.removeItem('userRole');
     navigate('/Login');
   };
-
   const navLinks = [
-    { to: '/', label: 'Home', icon: 'bi-house' },
-    { to: '/Supplier', label: 'Suppliers', icon: 'bi-people' },
-    { to: '/inventory', label: 'Inventory', icon: 'bi-box-seam' },
-    { to: '/Raw', label: 'Material', icon: 'bi-basket' },
+    { to: '/inventory', label: 'Home', icon: 'bi-house' },
+    { to: '/inventory/supplier', label: 'Suppliers', icon: 'bi-people' },
+    { to: '/inventory/management', label: 'Inventory', icon: 'bi-box-seam' },
+    { to: '/inventory/raw', label: 'Material', icon: 'bi-basket' },
   ];
 
   const toggleUserMenu = () => {
@@ -81,7 +80,7 @@ export default function Navbar() {
             autoplay
             style={{ width: 48, height: 48, minWidth: 48, minHeight: 48 }}
           />
-          <Link to="/" className="navbar-brand d-block text-decoration-none" style={{ lineHeight: 1 }}>
+          <Link to="/inventory" className="navbar-brand d-block text-decoration-none" style={{ lineHeight: 1 }}>
             <span className="main-brand d-block" style={{
               fontFamily: 'Poppins, sans-serif',
               fontSize: '1.45rem',
@@ -123,12 +122,10 @@ export default function Navbar() {
             >
               <i className="bi bi-graph-up me-2"></i>
               Analytics
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu className="dropdown-menu-custom">
+            </Dropdown.Toggle>            <Dropdown.Menu className="dropdown-menu-custom">
               <Dropdown.Item 
                 as={Link} 
-                to="/Raw" 
+                to="/inventory/raw" 
                 className="dropdown-item-custom"
                 onClick={() => setAnalyticsOpen(false)}
               >
@@ -136,7 +133,7 @@ export default function Navbar() {
               </Dropdown.Item>
               <Dropdown.Item 
                 as={Link} 
-                to="/inventory" 
+                to="/inventory/management" 
                 className="dropdown-item-custom"
                 onClick={() => setAnalyticsOpen(false)}
               >
@@ -144,7 +141,7 @@ export default function Navbar() {
               </Dropdown.Item>
               <Dropdown.Item 
                 as={Link} 
-                to="/inventory/lab" 
+                to="/inventory/management/lab" 
                 className="dropdown-item-custom"
                 onClick={() => setAnalyticsOpen(false)}
               >
@@ -152,7 +149,7 @@ export default function Navbar() {
               </Dropdown.Item>
               <Dropdown.Item 
                 as={Link} 
-                to="/inventory/sales" 
+                to="/inventory/management/sales" 
                 className="dropdown-item-custom"
                 onClick={() => setAnalyticsOpen(false)}
               >
@@ -160,7 +157,7 @@ export default function Navbar() {
               </Dropdown.Item>
               <Dropdown.Item 
                 as={Link} 
-                to="/inventory/other" 
+                to="/inventory/management/other" 
                 className="dropdown-item-custom"
                 onClick={() => setAnalyticsOpen(false)}
               >
@@ -168,7 +165,7 @@ export default function Navbar() {
               </Dropdown.Item>
               <Dropdown.Item 
                 as={Link} 
-                to="/Stock" 
+                to="/inventory/stock" 
                 className="dropdown-item-custom"
                 onClick={() => setAnalyticsOpen(false)}
               >

@@ -40,23 +40,23 @@ const Dashboard = () => {
     </div>
   );
   if (!stats) return null;
-
   return (
-    <div className="container py-4">
-      {/* Dashboard Header - matches Lab Inventory style */}
-      <div className="header-section p-4 mb-4 bg-light rounded-3 shadow-sm border-start border-4 border-info">
+    <>
+      {/* Dashboard Header */}
+      <div className="page-header">
         <div className="d-flex align-items-center">
           <div className="icon-wrapper d-flex align-items-center justify-content-center rounded-circle bg-info bg-opacity-10 p-3 me-3">
             <FaFlask className="text-primary" style={{ fontSize: '1.8rem' }} />
           </div>
           <div>
-            <h1 className="mb-1 fw-bold">Lab Dashboard</h1>
+            <h1 className="mb-1 fw-bold text-success">Lab Dashboard</h1>
+            <p className="text-muted mb-0">Monitor active cultures and lab operations</p>
           </div>
-        </div>
-      </div>
+        </div>      </div>
 
       {/* Key Metrics */}
-      <div className="row g-3 mb-4">
+      <div className="content-card">
+        <div className="row g-3">
         <div className="col-6 col-md-3">
           <div className="card border-0 shadow-sm rounded-4 h-100">
             <div className="card-body d-flex align-items-center">
@@ -106,9 +106,9 @@ const Dashboard = () => {
                 <div className="text-muted small">Production Ready</div>
                 <div className="fw-bold fs-4">{stats.productionReadyCount ?? 0}</div>
               </div>
-            </div>
-          </div>
+            </div>          </div>
         </div>
+      </div>
       </div>
 
       {/* Alerts */}
@@ -146,10 +146,9 @@ const Dashboard = () => {
           <h5 className="mb-0 fw-semibold text-secondary"><i className="bi bi-list-ul me-2"></i>Raw Material Overview</h5>
         </div>
         <div className="card-body">
-          <MaterialOverview />
-        </div>
+          <MaterialOverview />        </div>
       </div>
-    </div>
+    </>
   );
 };
 

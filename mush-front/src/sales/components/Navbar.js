@@ -24,13 +24,12 @@ export default function Navbar() {
     setMobileNavOpen(false);
     setProfileOpen(false);
   }, [location]);
-
   const navLinks = [
-    { to: '/sales', label: 'Sales List', icon: 'bi-cash-stack' },
-    { to: '/preorders', label: 'Pre Orders', icon: 'bi-calendar-check' },
-    { to: '/allocations', label: 'Allocations', icon: 'bi-diagram-3' },
-    { to: '/branches', label: 'Branches', icon: 'bi-geo-alt' },
-    { to: '/inventory', label: 'Inventory', icon: 'bi-box-seam' }
+    { to: '/sales/management', label: 'Sales List', icon: 'bi-cash-stack' },
+    { to: '/sales/preorders', label: 'Pre Orders', icon: 'bi-calendar-check' },
+    { to: '/sales/allocations', label: 'Allocations', icon: 'bi-diagram-3' },
+    { to: '/sales/branches', label: 'Branches', icon: 'bi-geo-alt' },
+    { to: '/sales/inventory', label: 'Inventory', icon: 'bi-box-seam' }
   ];
 
   return (

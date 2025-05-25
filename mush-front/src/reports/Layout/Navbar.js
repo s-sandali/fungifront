@@ -8,11 +8,10 @@ import './Navbar.css';
 export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const isMaterialPage = location.pathname === "/materials";
-  const isEmployeePage = location.pathname === "/employees";
-  const isDashboardPage = location.pathname === "/admin/dashboard";
-  const isSalesReportPage = location.pathname === "/analytics/sales";
+  const isMaterialPage = location.pathname === "/admin/materials";
+  const isEmployeePage = location.pathname === "/admin/employees";
+  const isDashboardPage = location.pathname === "/admin/dashboard" || location.pathname === "/admin";
+  const isSalesReportPage = location.pathname === "/admin/analytics/sales";
 
   const [showUserMenu, setShowUserMenu] = useState(false);
 
@@ -36,7 +35,7 @@ export default function Navbar() {
             autoplay
             style={{ width: 48, height: 48, minWidth: 48, minHeight: 48 }}
           />
-          <Link to="/" className="navbar-brand d-block text-decoration-none" style={{ lineHeight: 1 }}>
+          <Link to="/admin" className="navbar-brand d-block text-decoration-none" style={{ lineHeight: 1 }}>
             <span className="main-brand d-block" style={{
               fontFamily: 'Poppins, sans-serif',
               fontSize: '1.45rem',
@@ -55,8 +54,7 @@ export default function Navbar() {
 
         {/* Navigation Links */}
         <div className="nav-links flex-grow-1 p-3">
-          <ul className="nav flex-column">
-            <li className="nav-item mb-2">
+          <ul className="nav flex-column">            <li className="nav-item mb-2">
               <Link 
                 className={`nav-link py-2 px-3 nav-link-custom d-flex align-items-center${isDashboardPage ? ' active' : ''}`} 
                 to="/admin/dashboard"
@@ -67,7 +65,7 @@ export default function Navbar() {
             <li className="nav-item mb-2">
               <Link 
                 className={`nav-link py-2 px-3 nav-link-custom d-flex align-items-center${isMaterialPage ? ' active' : ''}`} 
-                to="/materials"
+                to="/admin/materials"
               >
                 <i className="bi bi-basket me-2"></i> Materials
               </Link>
@@ -75,7 +73,7 @@ export default function Navbar() {
             <li className="nav-item mb-2">
               <Link 
                 className={`nav-link py-2 px-3 nav-link-custom d-flex align-items-center${isEmployeePage ? ' active' : ''}`} 
-                to="/employees"
+                to="/admin/employees"
               >
                 <i className="bi bi-people me-2"></i> Employees
               </Link>
@@ -89,10 +87,10 @@ export default function Navbar() {
                 <i className="bi bi-bar-chart me-2"></i> Analytics
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu-custom">
-                <Dropdown.Item as={Link} to="/analytics/sales" className="dropdown-item-custom">
+                <Dropdown.Item as={Link} to="/admin/analytics/sales" className="dropdown-item-custom">
                   <i className="bi bi-graph-up me-2"></i> Sales Reports
                 </Dropdown.Item>
-                <Dropdown.Item as={Link} to="/analytics/labs" className="dropdown-item-custom">
+                <Dropdown.Item as={Link} to="/admin/analytics/labs" className="dropdown-item-custom">
                   <i className="bi bi-flask me-2"></i> Lab Reports
                 </Dropdown.Item>
               </Dropdown.Menu>

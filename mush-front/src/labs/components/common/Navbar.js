@@ -24,12 +24,11 @@ const Navbar = () => {
   useEffect(() => {
     setMobileNavOpen(false);
   }, [location]);
-
   const navLinks = [
-    { path: '/', icon: 'bi-speedometer2', label: 'Dashboard' },
-    { path: '/mushroom-management', icon: 'bi-diagram-3', label: 'Mushroom Management' },
-    { path: '/lab-inventory', icon: 'bi-box-seam', label: 'Lab Inventory' },
-    { path: '/allocations', icon: 'bi-arrow-left-right', label: 'Allocations' }
+    { path: '/lab', icon: 'bi-speedometer2', label: 'Dashboard' },
+    { path: '/lab/mushroom-management', icon: 'bi-diagram-3', label: 'Mushroom Management' },
+    { path: '/lab/lab-inventory', icon: 'bi-box-seam', label: 'Lab Inventory' },
+    { path: '/lab/allocations', icon: 'bi-arrow-left-right', label: 'Allocations' }
   ];
 
   const toggleUserMenu = () => {
@@ -53,8 +52,7 @@ const Navbar = () => {
               autoplay
               style={{ width: 60, height: 60 }}
             />
-          </div>
-          <Link className="navbar-brand d-block text-decoration-none" to="/">
+          </div>          <Link className="navbar-brand d-block text-decoration-none" to="/lab">
             <span className="main-brand d-block">Fungi Flow</span>
             <span className="sub-brand">Lab Management</span>
           </Link>

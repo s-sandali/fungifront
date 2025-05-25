@@ -7,7 +7,6 @@ import { FaSeedling, FaFlask, FaChartLine, FaBoxOpen } from 'react-icons/fa';
 export default function Dashboard() {
   const navigate = useNavigate();
   
-
   const quickActions = [
     { 
       icon: <FaSeedling className="text-success" size="2em" />,
@@ -19,26 +18,25 @@ export default function Dashboard() {
       icon: <FaFlask className="text-info" size="2em" />,
       title: "Production",
       description: "View cultivation progress",
-      link: "/production"
+      link: "/lab/mushroom-management"
     },
     { 
       icon: <FaChartLine className="text-warning" size="2em" />,
       title: "Sales Analytics",
       description: "Branch performance & trends",
-      link: "/analytics"
+      link: "/admin/analytics/sales"
     },
     { 
       icon: <FaBoxOpen className="text-danger" size="2em" />,
       title: "Inventory",
       description: "Manage raw materials",
-      link: "/inventory"
+      link: "/inventory/management"
     }
   ];
-
   return (
-    <div className="p-4">
+    <>
       {/* Hero Section */}
-      <div className="header-section p-4 mb-4 bg-light rounded-3 shadow-sm border-start border-4 border-success">
+      <div className="page-header">
         <div className="row align-items-center">
           <div className="col-lg-6">
             <h1 className="display-5 fw-bold text-success mb-3">
@@ -58,11 +56,10 @@ export default function Dashboard() {
         </div>
       </div>
 
-      
-
-      {/* Quick Actions */}
-      <h3 className="mb-4 fw-bold text-success">Core Operations</h3>
-      <div className="row g-4">
+          {/* Quick Actions */}
+      <div className="content-card">
+        <h3 className="mb-4 fw-bold text-success">Core Operations</h3>
+        <div className="row g-4">
         {quickActions.map((action, index) => (
           <div key={index} className="col-12 col-md-6 col-xl-3">
             <div 
@@ -80,33 +77,35 @@ export default function Dashboard() {
                 <p className="text-muted mb-0">{action.description}</p>
               </div>
             </div>
-          </div>
-        ))}
+          </div>        ))}
+        </div>
       </div>
 
       {/* Production Overview */}
-      <div className="row mt-5 g-4">
-        <div className="col-12">
-          <div className="card border-0 shadow-sm">
-            <div className="card-header bg-success text-white">
-              <h5 className="mb-0">Cultivation Varieties</h5>
-            </div>
-            <div className="card-body">
-              <div className="row g-4 text-center">
-                {['American Oyster', 'Abalone', 'Bhutan Oyster', 'Pink Oyster', 'Milky'].map((variety, idx) => (
-                  <div key={idx} className="col">
-                    <div className="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block">
-                      <FaSeedling className="text-success" size="1.5em" />
+      <div className="content-card">
+        <div className="row g-4">
+          <div className="col-12">
+            <div className="card border-0 shadow-sm">
+              <div className="card-header bg-success text-white">
+                <h5 className="mb-0">Cultivation Varieties</h5>
+              </div>
+              <div className="card-body">
+                <div className="row g-4 text-center">
+                  {['American Oyster', 'Abalone', 'Bhutan Oyster', 'Pink Oyster', 'Milky'].map((variety, idx) => (
+                    <div key={idx} className="col">
+                      <div className="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block">
+                        <FaSeedling className="text-success" size="1.5em" />
+                      </div>
+                      <div className="mt-2 small fw-bold">{variety}</div>
+                      <div className="text-muted small">1-2 weeks cycle</div>
                     </div>
-                    <div className="mt-2 small fw-bold">{variety}</div>
-                    <div className="text-muted small">1-2 weeks cycle</div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

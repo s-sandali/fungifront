@@ -1,5 +1,5 @@
 import './App.css';
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
@@ -44,10 +44,11 @@ import BranchComponent from './sales/components/BranchComponent';
 const Layout = ({ children }) => {
   const location = useLocation();
   const isAuthPage = location.pathname === '/Login' || location.pathname === '/Signup';
+  const isLoadingPage = location.pathname === '/';
   const userRole = localStorage.getItem('userRole');
 
   let NavbarComponent = null;
-  if (!isAuthPage) {
+  if (!isAuthPage && !isLoadingPage) {
     switch(userRole) {
       case 'LAB_STAFF':
         NavbarComponent = <LabsNavbar />;
@@ -66,15 +67,21 @@ const Layout = ({ children }) => {
     }
   }
 
+  // For auth pages and loading page, render children without sidebar layout
+  if (isAuthPage || isLoadingPage) {
+    return children;
+  }
+
+  // For authenticated pages, render with sidebar layout
   return (
-    <>
+    <div className="d-flex">
       {NavbarComponent}
-      <div className="sidebar-spacer"></div>
-      <main className="main-content">
-        {children}
+      <main className="main-content flex-grow-1">
+        <div className="container-fluid">
+          {children}
+        </div>
       </main>
-      <div className="footer"></div>
-    </>
+    </div>
   );
 };
 
@@ -104,14 +111,18 @@ function App() {
             <Route path="/Login" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />
             <Route path="/unauthorized" element={<div>Unauthorized Access</div>} />
+            
+            {/* Root route - Always show loading screen first */}
+            <Route path="/" element={<Name />} />
 
             {/* Lab Staff Routes */}
             <Route
-              path="/*"
+              path="/lab/*"
               element={
                 <ProtectedRoute allowedRoles={['LAB_STAFF']}>
                   <Routes>
                     <Route path="/" element={<LabDashboard />} />
+                    <Route path="/dashboard" element={<LabDashboard />} />
                     <Route path="/mushroom-management" element={<MushroomManagement />} />
                     <Route path="/lab-inventory" element={<LabInventory />} />
                     <Route path="/allocations" element={<AllocationManagement />} />
@@ -122,12 +133,12 @@ function App() {
 
             {/* Report Manager Routes */}
             <Route
-              path="/*"
+              path="/admin/*"
               element={
                 <ProtectedRoute allowedRoles={['REPORT_MANAGER']}>
                   <Routes>
                     <Route path="/" element={<AdminDashboard />} />
-                    <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                    <Route path="/dashboard" element={<AdminDashboard />} />
                     <Route path="/materials" element={<MaterialManagement />} />
                     <Route path="/employees" element={<EmployeeManagement />} />
                     <Route path="/analytics/sales" element={<SalesReport />} />
@@ -139,19 +150,19 @@ function App() {
 
             {/* Inventory Manager Routes */}
             <Route
-              path="/*"
+              path="/inventory/*"
               element={
                 <ProtectedRoute allowedRoles={['INVENTORY_MANAGER']}>
                   <Routes>
-                    <Route path="/" element={<Name />} />
-                    <Route path="/Dashboard" element={<Dashboard />} />
-                    <Route path="/Raw" element={<Raw />} />
-                    <Route path="/inventory/:usageType?" element={<InventoryManagement />} />
-                    <Route path="/inventory/edit/:InvId" element={<InventoryManagement />} />
-                    <Route path="/Supplier" element={<Supplier />} />
-                    <Route path="/Stock" element={<Stock />} />
-                    <Route path="/SaveSupplier" element={<Supplier />} />
-                    <Route path="/EditSupplier/:SupplierId" element={<Supplier />} />
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/raw" element={<Raw />} />
+                    <Route path="/management/:usageType?" element={<InventoryManagement />} />
+                    <Route path="/management/edit/:InvId" element={<InventoryManagement />} />
+                    <Route path="/supplier" element={<Supplier />} />
+                    <Route path="/stock" element={<Stock />} />
+                    <Route path="/supplier/save" element={<Supplier />} />
+                    <Route path="/supplier/edit/:SupplierId" element={<Supplier />} />
                   </Routes>
                 </ProtectedRoute>
               }
@@ -159,13 +170,13 @@ function App() {
 
             {/* Sales Manager Routes */}
             <Route
-              path="/*"
+              path="/sales/*"
               element={
                 <ProtectedRoute allowedRoles={['SALES_MANAGER']}>
                   <Routes>
                     <Route path="/" element={<SalesManagement />} />
-                    <Route path="/sales" element={<SalesManagement />} />
-                    <Route path="/sales/new" element={<SalesManagement />} />
+                    <Route path="/management" element={<SalesManagement />} />
+                    <Route path="/management/new" element={<SalesManagement />} />
                     <Route path="/preorders" element={<PreorderManagement />} />
                     <Route path="/preorders/new" element={<PreorderManagement />} />
                     <Route path="/inventory" element={<Inventory />} />
@@ -175,6 +186,9 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+            {/* Catch all route for unmatched paths */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Layout>
       </Router>

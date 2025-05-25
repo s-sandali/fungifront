@@ -12,7 +12,28 @@ export default function Name() {
     const timer = setTimeout(() => {
       setFadeOut(true);
       setTimeout(() => {
-        navigate('/Dashboard');
+        const userRole = localStorage.getItem('userRole');
+        if (!userRole) {
+          navigate('/Login');
+        } else {
+          // Redirect based on user role
+          switch(userRole) {
+            case 'LAB_STAFF':
+              navigate('/lab/dashboard');
+              break;
+            case 'REPORT_MANAGER':
+              navigate('/admin/dashboard');
+              break;
+            case 'INVENTORY_MANAGER':
+              navigate('/inventory/dashboard');
+              break;
+            case 'SALES_MANAGER':
+              navigate('/sales/management');
+              break;
+            default:
+              navigate('/Login');
+          }
+        }
       }, 900);
     }, 1800);
     return () => clearTimeout(timer);

@@ -6,17 +6,19 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 export default function Dashboard() {
   return (
-    <div className="p-4">
-      {/* Header Section with Bootstrap Icon */}
-      <div className="header-section p-4 mb-4 bg-light rounded-3 shadow-sm border-start border-4 border-success">
+    <>
+      {/* Header Section */}
+      <div className="page-header">
         <div className="d-flex align-items-center">
           <i className="bi bi-speedometer2 text-success me-3" style={{ fontSize: '2rem' }}></i>
-          <h1 className="fw-bold text-success mb-0">Dashboard</h1>
+          <div>
+            <h1 className="fw-bold text-success mb-0">Admin Dashboard</h1>
+            <p className="text-muted mb-0">System overview and analytics</p>
+          </div>
         </div>
-      </div>
-
-      {/* Dashboard Cards/Charts */}
-      <div className="row g-4">
+      </div>      {/* Dashboard Content */}
+      <div className="content-card">
+        <div className="row g-4">
         <div className="col-lg-6">
           <div className="card border-0 shadow-sm rounded-3 mb-4">
             <div className="card-header bg-white p-3 border-bottom border-light">
@@ -52,11 +54,11 @@ export default function Dashboard() {
               </h5>
             </div>
             <div className="card-body">
-              <LowStockAlerts />
-            </div>
+              <LowStockAlerts />            </div>
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

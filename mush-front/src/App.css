@@ -1,5 +1,12 @@
+/* Main application layout */
 .App {
-  text-align: center;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+/* Remove the text-align center for better layout */
+.App * {
+  box-sizing: border-box;
 }
 
 .App-logo {
@@ -33,32 +40,54 @@
     padding: 150px;
     min-height: 100vh;
   }
-  :root {
+
+:root {
   --sidebar-width: 280px;
 }
 
-/* Sidebar spacer for desktop */
-.sidebar-spacer {
-  margin-left: var(--sidebar-width);
-  transition: margin 0.3s;
-}
-
-/* Main content alignment */
+/* Main content styling */
 .main-content {
-  margin-left: var(--sidebar-width);
-  padding: 32px 32px 32px 32px; /* adjust as needed */
   min-height: 100vh;
-  transition: margin 0.3s;
-  color: #343a40;
+  padding: 24px;
   background: #f8f9fa;
+  color: #343a40;
+  overflow-x: auto;
 }
 
-/* Responsive: remove margin on mobile */
+/* Container styling for better spacing */
+.main-content .container-fluid {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card layouts for better design */
+.page-header {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-left: 4px solid #198754;
+}
+
+.content-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Responsive design */
 @media (max-width: 991px) {
-  .sidebar-spacer,
   .main-content {
-    margin-left: 0;
-    padding: 16px 8px;
+    padding: 16px 12px;
+  }
+  
+  .page-header,
+  .content-card {
+    padding: 16px;
+    margin-bottom: 16px;
   }
 }
 

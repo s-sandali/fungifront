@@ -120,28 +120,27 @@ export default function InventoryManagement() {
           </div>
           <div>
             <h1 className="mb-1 fw-bold">Inventory Management</h1>
-            <div className="d-flex gap-2 mt-2">
-              <button 
+            <div className="d-flex gap-2 mt-2">              <button 
                 className={`btn btn-sm ${activeTab === 'all' ? 'btn-success' : 'btn-outline-success'}`}
-                onClick={() => navigate('/inventory/all')}
+                onClick={() => navigate('/inventory/management/all')}
               >
                 All Inventory
               </button>
               <button 
                 className={`btn btn-sm ${activeTab === 'lab' ? 'btn-success' : 'btn-outline-success'}`}
-                onClick={() => navigate('/inventory/lab')}
+                onClick={() => navigate('/inventory/management/lab')}
               >
                 Lab Inventory
               </button>
               <button 
                 className={`btn btn-sm ${activeTab === 'sales' ? 'btn-success' : 'btn-outline-success'}`}
-                onClick={() => navigate('/inventory/sales')}
+                onClick={() => navigate('/inventory/management/sales')}
               >
                 Sales Inventory
               </button>
               <button 
                 className={`btn btn-sm ${activeTab === 'other' ? 'btn-success' : 'btn-outline-success'}`}
-                onClick={() => navigate('/inventory/other')}
+                onClick={() => navigate('/inventory/management/other')}
               >
                 Other Inventory
               </button>
